@@ -2,7 +2,7 @@ import {LogoutOutlined, UserOutlined} from "@ant-design/icons";
 import {Button, Dropdown, Layout, Menu, message, theme} from "antd";
 import {getAuth, signOut} from "firebase/auth";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import userimg from "../assets/dashuser.png";
 import logo from "../assets/logo.png";
 import firebase_app from "../firebase";
@@ -116,7 +116,7 @@ const Dashboard = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            content
+            <Outlet />
           </div>
         </Content>
         <Footer
