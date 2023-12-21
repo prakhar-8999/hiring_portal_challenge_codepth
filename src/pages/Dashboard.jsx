@@ -70,7 +70,7 @@ const Dashboard = () => {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={["4"]}
+            defaultSelectedKeys={["1"]}
             items={items}
           />
         </div>
@@ -88,7 +88,7 @@ const Dashboard = () => {
               style={{float: "right", background: "none", border: "none"}}
             >
               <img
-                className="w-12 mr-12 mt-2 cursor-pointer"
+                className="w-12 mr-6 mt-2 cursor-pointer"
                 style={{
                   float: "right",
                 }}

@@ -3,11 +3,7 @@ import ApplyForJob from "./pages/ApplyForJob";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// console.log(app);
-
-function App() {
+const App = () => {
   return (
     <Routes>
       <Route path="/" index element={<Login />} />
@@ -17,6 +13,6 @@ function App() {
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;
