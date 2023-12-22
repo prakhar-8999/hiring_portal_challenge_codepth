@@ -18,6 +18,7 @@ const initialState = {
 const Login = () => {
   const [state, setState] = useState(initialState);
   const navigate = useNavigate();
+  const [form] = Form.useForm();
   const auth = getAuth;
 
   const onFinish = (values) => {
@@ -25,8 +26,8 @@ const Login = () => {
     createUserWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
-        setState((prev) => ({...prev, registerLoading: false}));
+        form.resetFields();
+        setState((prev) => ({...prev, registerLoading: false, isOpen: false}));
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -149,6 +150,7 @@ const Login = () => {
         <Form
           name="register"
           layout="vertical"
+          form={form}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
