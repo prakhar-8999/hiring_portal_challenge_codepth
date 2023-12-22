@@ -91,7 +91,7 @@ const AppliedJobs = () => {
                       <h2 className="text-lg text-gray-900 font-medium title-font mb-4">
                         {each.jobDetails.job_title}
                       </h2>
-                      <p className="leading-relaxed text-base">
+                      <p className="leading-relaxed text-base h-30 overflow-scroll">
                         {each.jobDetails.description}
                       </p>
                       <div className="mt-12">
