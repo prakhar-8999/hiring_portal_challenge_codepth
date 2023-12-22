@@ -1,21 +1,13 @@
 import {LogoutOutlined, UserOutlined} from "@ant-design/icons";
-import {Button, Dropdown, Layout, Menu, message, theme} from "antd";
-import {getAuth, signOut} from "firebase/auth";
+import {Avatar, Button, Dropdown, Layout, Menu, message, theme} from "antd";
+import {signOut} from "firebase/auth";
 import React from "react";
 import {Outlet, useNavigate} from "react-router-dom";
-import userimg from "../assets/dashuser.png";
 import logo from "../assets/logo.png";
-import firebase_app from "../firebase";
+import {getAuth} from "../firebase";
 const {Header, Content, Footer, Sider} = Layout;
-const auth = getAuth(firebase_app);
 
-const items = [
-  {
-    key: 1,
-    icon: <UserOutlined />,
-    label: "apply for job",
-  },
-];
+const auth = getAuth;
 
 const Dashboard = () => {
   const {
@@ -35,6 +27,32 @@ const Dashboard = () => {
         message.error(errorMessage);
       });
   };
+  const items = [
+    {
+      key: 1,
+      icon: <UserOutlined />,
+      label: "Profile",
+      onClick: () => navigate(""),
+    },
+    {
+      key: 2,
+      icon: <UserOutlined />,
+      label: "Add Job",
+      onClick: () => navigate("addJobs"),
+    },
+    {
+      key: 3,
+      icon: <UserOutlined />,
+      label: "apply for job",
+      onClick: () => navigate("applyForJob"),
+    },
+    {
+      key: 4,
+      icon: <UserOutlined />,
+      label: "Applied Jobs",
+      onClick: () => navigate("appliedJobs"),
+    },
+  ];
 
   const menu = (
     <Menu
@@ -59,6 +77,14 @@ const Dashboard = () => {
       ]}
     />
   );
+
+  // useEffect(() => {
+  //   const user = auth.currentUser;
+  //   if (!user) {
+  //     message.error("Unauthorized!");
+  //     navigate("/");
+  //   }
+  // }, []);
 
   return (
     <Layout>
@@ -87,20 +113,13 @@ const Dashboard = () => {
               onClick={(e) => e.preventDefault()}
               style={{float: "right", background: "none", border: "none"}}
             >
-              <img
-                className="w-12 mr-6 mt-2 cursor-pointer"
-                style={{
-                  float: "right",
-                }}
-                src={userimg}
-                alt="use8g76t"
+              <Avatar
+                style={{backgroundColor: "#87d068"}}
+                icon={<UserOutlined />}
+                className="mt-3 mr-5 cursor-pointer"
               />
             </button>
           </Dropdown>
-
-          {/* <button className='colapbutton' onClick={responsive}>{React.createElement(MenuFoldOutlined, {
-            className: 'trigger',
-          })}</button> */}
         </Header>
         <Content
           style={{
@@ -111,7 +130,6 @@ const Dashboard = () => {
             style={{
               padding: 24,
               minHeight: "85vh",
-              //   height: "",
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
