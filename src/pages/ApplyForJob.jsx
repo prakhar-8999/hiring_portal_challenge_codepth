@@ -90,15 +90,10 @@ const ApplyForJob = () => {
       <Spin spinning={state.spinning}>
         <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-            Applied Jobs &nbsp;&nbsp;
-            <button onClick={addJobs}>addJobs</button>
+            Apply for Job
           </h1>
           <div className="h-1 w-20 bg-indigo-500 rounded"></div>
         </div>
-        {/* <div className="flex justify-start text-2xl font-bold">
-          Apply For Job &nbsp;&nbsp; <ArrowRightOutlined />{" "}
-          <button onClick={addJobs}>addJobs</button>
-        </div> */}
         <div className="grid grid-cols-1 md:grid-cols-2 mt-12 gap-x-8 gap-y-8">
           {state.jobs.map((each, index) => (
             <div

@@ -9,6 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 import {useEffect, useState} from "react";
+import noJob from "../assets/noJobs.svg";
 import {db, getAuth} from "../firebase";
 
 const initialState = {
@@ -72,43 +73,50 @@ const AppliedJobs = () => {
                 <div className="h-1 w-20 bg-indigo-500 rounded"></div>
               </div>
             </div>
-            <div className="flex flex-wrap -m-4">
-              {state.appliesJobs.map((each, index) => (
-                <div className="xl:w-1/4 md:w-1/2 p-4" key={index}>
-                  <div className="bg-gray-100 p-6 rounded-lg">
-                    <img
-                      className="h-40 rounded w-full object-cover object-center mb-6"
-                      src={each.jobDetails.image}
-                      alt="content"
-                    />
-                    <h2 className="text-lg text-gray-900 font-medium title-font mb-4">
-                      {each.jobDetails.job_title}
-                    </h2>
-                    <p className="leading-relaxed text-base">
-                      {each.jobDetails.description}
-                    </p>
-                    <div className="mt-12">
-                      <Button
-                        type="primary"
-                        className="w-full"
-                        onClick={() => openViewApplication(each)}
-                      >
-                        View Application
-                      </Button>
-                      <br />
-                      <Button
-                        type="primary"
-                        danger
-                        className="mt-3 w-full"
-                        onClick={() => withDrawApplication(each.id)}
-                      >
-                        Withdraw Application
-                      </Button>
+
+            {state.appliesJobs.length === 0 ? (
+              <div className="flex justify-center">
+                <img src={noJob} alt="No_job_available" />
+              </div>
+            ) : (
+              <div className="flex flex-wrap -m-4">
+                {state.appliesJobs.map((each, index) => (
+                  <div className="xl:w-1/4 md:w-1/2 p-4" key={index}>
+                    <div className="bg-gray-100 p-6 rounded-lg">
+                      <img
+                        className="h-40 rounded w-full object-cover object-center mb-6"
+                        src={each.jobDetails.image}
+                        alt="content"
+                      />
+                      <h2 className="text-lg text-gray-900 font-medium title-font mb-4">
+                        {each.jobDetails.job_title}
+                      </h2>
+                      <p className="leading-relaxed text-base">
+                        {each.jobDetails.description}
+                      </p>
+                      <div className="mt-12">
+                        <Button
+                          type="primary"
+                          className="w-full"
+                          onClick={() => openViewApplication(each)}
+                        >
+                          View Application
+                        </Button>
+                        <br />
+                        <Button
+                          type="primary"
+                          danger
+                          className="mt-3 w-full"
+                          onClick={() => withDrawApplication(each.id)}
+                        >
+                          Withdraw Application
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </Spin>

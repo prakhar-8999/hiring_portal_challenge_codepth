@@ -1,7 +1,7 @@
 import {LogoutOutlined, UserOutlined} from "@ant-design/icons";
 import {Avatar, Button, Dropdown, Layout, Menu, message, theme} from "antd";
 import {signOut} from "firebase/auth";
-import React from "react";
+import React, {useEffect} from "react";
 import {Outlet, useNavigate} from "react-router-dom";
 import logo from "../assets/logo.png";
 import {getAuth} from "../firebase";
@@ -78,13 +78,13 @@ const Dashboard = () => {
     />
   );
 
-  // useEffect(() => {
-  //   const user = auth.currentUser;
-  //   if (!user) {
-  //     message.error("Unauthorized!");
-  //     navigate("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (!user) {
+      message.error("Unauthorized!");
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Layout>
@@ -129,7 +129,7 @@ const Dashboard = () => {
           <div
             style={{
               padding: 24,
-              minHeight: "85vh",
+              minHeight: "88vh",
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
@@ -141,9 +141,7 @@ const Dashboard = () => {
           style={{
             textAlign: "center",
           }}
-        >
-          {/* Ant Design ©2023 Created by Ant UED */}
-        </Footer>
+        ></Footer>
       </Layout>
     </Layout>
   );
